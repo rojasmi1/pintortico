@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./professional-page.css";
+import "./professional.css";
 
 const flexLayout = {
   display: "flex",
@@ -8,7 +8,7 @@ const flexLayout = {
   alignItems: "center"
 };
 
-class ProfessionalPage extends Component {
+class Professional extends Component {
   render() {
     return (
       <section className="home">
@@ -17,9 +17,10 @@ class ProfessionalPage extends Component {
           This content is only shown to authenticated users with the role
           "PROFESSIONAL".
         </p>
+        <div style={flexLayout}></div>
       </section>
     );
   }
 }
 
-export default ProfessionalPage;
+export default Professional;

@@ -1,14 +1,14 @@
 import React from "react";
 import DefaultLayout from "../layout/defaultLayout";
-import Home from "../containers/home";
-import About from "../containers/about";
-import ProfessionalPage from "../containers/professional-page";
+import HomeContainer from "../containers/homeContainer";
+import LoginContainer from "../containers/loginContainer";
+import ProfessionalContainer from "../containers/professionalContainer";
 
 const Nav = () => (
   <div>
-    <DefaultLayout exact path="/" component={Home} />
-    <DefaultLayout path="/professional" component={ProfessionalPage} />
-    <DefaultLayout path="/about" component={About} />
+    <DefaultLayout exact path="/" component={HomeContainer} />
+    <DefaultLayout path="/professional" component={ProfessionalContainer} />
+    <DefaultLayout path="/login" component={LoginContainer} />
   </div>
 );
 

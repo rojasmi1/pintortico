@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Header from '../components/header';
+import HeaderContainer from '../containers/headerContainer';
 import "../styles/main.css";
 
 
@@ -10,7 +10,7 @@ const DefaultLayout = ({ component: Component, ...rest }) => {
       {...rest}
       render={matchProps => (
         <div>
-          <Header />
+          <HeaderContainer />
           <div className="container">
             <Component {...matchProps} />
           </div>

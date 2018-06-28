@@ -12,8 +12,10 @@ const initialstate = {
     isLoading: false,
     resultData: null
   },
+  professional: {},
   global: {
-    currentLanguage: 'en'
+    currentLanguage: 'en',
+    isAuthenticated: false
   }
 };
 
