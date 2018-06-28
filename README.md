@@ -52,8 +52,6 @@ We commit to keeping the breaking changes minimal so you can upgrade `react-scri
 
 ## Folder Structure
 
-After creation, your project should look like this:
-
 ```
 my-app/
   README.md
@@ -63,6 +61,14 @@ my-app/
     index.html
     favicon.ico
   src/
+    components/
+    containers/
+    layout/
+    routes/
+      nav.jsx
+    store/
+      ...
+    styles/
     App.css
     App.js
     App.test.js
@@ -70,6 +76,27 @@ my-app/
     index.js
     logo.svg
 ```
+
+### components
+
+All the presentational components that are not aware of Redux.
+
+### containers
+
+All container components that are aware of Redux, these are the ones that will map redux state/actions to pass them as props to the presentational components.
+
+### layout
+
+Shared/Master layout to define the main page positioning.
+
+### store
+
+Redux store configuration/creation and all the reducers with their respective actions.
+
+### styles
+
+Global styles used across the app
+
 
 For the project to build, **these files must exist with exact filenames**:
 

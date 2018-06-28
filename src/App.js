@@ -1,24 +1,26 @@
 import "./App.css";
 import React from "react";
-import DefaultLayout from "./layout/defaultLayout";
-import Home from "./containers/home";
-import About from "./containers/about";
-import ProfessionalPage from "./containers/professional-page";
-import configureStore from "./store";
+import configureStore from "./store/createStore";
+import Nav from './routes/nav';
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import { createBrowserHistory } from 'history';
 
-const history = createBrowserHistory()
+const history = createBrowserHistory();
+const initialstate = {
+  home: {
+    isLoading: false,
+    resultData: null
+  },
+  global: {
+    currentLanguage: 'en'
+  }
+};
 
 const App = () => (
-  <Provider store={configureStore(history)}>
+  <Provider store={configureStore(history, initialstate)}>
     <ConnectedRouter history={history}>
-      <div>
-        <DefaultLayout exact path="/" component={Home} />
-        <DefaultLayout path="/professional" component={ProfessionalPage} />
-        <DefaultLayout path="/about" component={About} />
-      </div>
+      <Nav/>
     </ConnectedRouter>
   </Provider>
 );
