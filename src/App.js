@@ -14,8 +14,8 @@ const initialstate = {
   },
   professional: {},
   global: {
-    currentLanguage: 'en',
-    languages: '',
+    currentLocale: 'en_US',
+    locales: ['en_US'],
     isAuthenticated: false
   }
 };
@@ -25,7 +25,7 @@ const store = configureStore(history, initialstate);
 const App = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Nav store={store}/>
+      <Nav store={store} />
     </ConnectedRouter>
   </Provider>
 );

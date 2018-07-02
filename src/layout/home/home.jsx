@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './home.css';
 import Spinner from 'react-spinkit';
-import DataResults from '../../components/data-results';
-
+import DataResults from '../../components/dataResults';
 
 class Home extends Component {
-
   asyncAction = event => {
     this.props.asyncAction();
   };
@@ -16,25 +14,22 @@ class Home extends Component {
     if (this.props.isLoading) {
       resultData = (
         <div>
-          <Spinner
-            name='chasing-dots'
-            color='steelblue'
-          />
+          <Spinner name="chasing-dots" color="steelblue" />
         </div>
       );
     } else {
-      resultData = (<DataResults html={this.props.resultData}/>);
+      resultData = <DataResults html={this.props.resultData} />;
     }
     return (
-      <section className='home'>
+      <section className="home">
         <h1>Welcome to Hills Vet Demo!</h1>
         <p>
           This is a Demo App to showcase some functionalities to the customer
           using ReactJS.
         </p>
         <button onClick={this.asyncAction}>Redux async action</button>
-        <br/>
-        <br/>
+        <br />
+        <br />
         {resultData}
       </section>
     );
