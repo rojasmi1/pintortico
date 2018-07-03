@@ -1,8 +1,9 @@
-import React from "react";
-import DefaultLayout from "../layout/defaultLayout";
-import HomeContainer from "../containers/homeContainer";
-import LoginContainer from "../containers/loginContainer";
-import ProfessionalContainer from "../containers/professionalContainer";
+import React from 'react';
+import DefaultLayout from '../layout/defaultLayout';
+import HomeContainer from '../containers/homeContainer';
+import LoginContainer from '../containers/loginContainer';
+import ProfessionalContainer from '../containers/professionalContainer';
+import { hasRouteAccess } from '../constants';
 
 const Nav = ({ store }) => {
   const { global } = store.getState();
@@ -13,19 +14,17 @@ const Nav = ({ store }) => {
         exact
         path="/"
         component={HomeContainer}
-        isAuthenticated={global.isAuthenticated}
         isPrivate={false}
       />
       <DefaultLayout
         path="/professional"
         component={ProfessionalContainer}
-        isAuthenticated={global.isAuthenticated}
+        isAuthorized={hasRouteAccess(global.user, 'professional')}
         isPrivate={true}
       />
       <DefaultLayout
         path="/login"
         component={LoginContainer}
-        isAuthenticated={global.isAuthenticated}
         isPrivate={false}
       />
     </div>

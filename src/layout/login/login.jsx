@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
 import './login.css';
 import Spinner from 'react-spinkit';
+import LoginForm from '../../components/loginForm';
+import Logout from '../../components/logout';
 
 class Login extends Component {
-  authenticateUser = event => {
-    this.props.authenticateUser('rojasmi1', 'mypass');
+  login = (email, password) => {
+    this.props.login(email, password);
+  };
+
+  logout = () => {
+    this.props.logout();
   };
 
   render() {
     return (
       <section className="login">
-        <h1>Login!</h1>
-        <p>Please enter your credentials to log in!</p>
+        {!this.props.isAuthenticated ? (
+          <section>
+            <h1>Login!</h1>
+            <LoginForm login={this.login} />
+          </section>
+        ) : (
+          <section>
+            <h1>Logout!</h1>
+            <Logout logout={this.logout} />
+          </section>
+        )}
         {this.props.isLoading ? (
           <Spinner name="chasing-dots" color="steelblue" />
         ) : null}
-        <button onClick={this.authenticateUser}>{`${
-          !this.props.isAuthenticated ? 'Log in' : 'Log out'
-        }`}</button>
       </section>
     );
   }

@@ -5,6 +5,8 @@ import { API_CONFIG } from '../constants';
 // ------------------------------------
 const USER_AUTHENTICATION = 'USER_AUTHENTICATION';
 const USER_AUTHENTICATION_SUCCESS = 'USER_AUTHENTICATION_SUCCESS';
+const USER_LOGOUT = 'USER_LOGOUT';
+const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
 
 // ------------------------------------
 // Actions
@@ -22,16 +24,25 @@ function userAuthenticationSuccess(user) {
   };
 }
 
-function authenticateUser(username, password) {
+function userLogout() {
+  return {
+    type: USER_LOGOUT
+  };
+}
+
+function userLogoutSuccess(user) {
+  return {
+    type: USER_LOGOUT_SUCCESS
+  };
+}
+
+function login(email, password) {
   return async dispatch => {
     dispatch(userAuthentication());
     const response = await fetch(
       `${API_CONFIG.BASE_URL}/auth/login?locale=en_US`,
       {
-        body: JSON.stringify({
-          email: 'hugo.alvarez@possible.com',
-          password: 'Hills123'
-        }),
+        body: JSON.stringify({ email, password }),
         method: 'POST'
       }
     );
@@ -40,8 +51,19 @@ function authenticateUser(username, password) {
   };
 }
 
+function logout() {
+  return async dispatch => {
+    dispatch(userLogout());
+    const response = await fetch(
+      `${API_CONFIG.BASE_URL}/auth/logout?locale=en_US`
+    );
+    dispatch(userLogoutSuccess());
+  };
+}
+
 export const actions = {
-  authenticateUser
+  login,
+  logout
 };
 
 // ------------------------------------
@@ -60,9 +82,19 @@ const ACTION_HANDLERS = {
       ...state,
       isLoading: false,
       user,
-      isAuthenticated: !state.isAuthenticated
+      isAuthenticated: true
     };
-  }
+  },
+  [USER_LOGOUT]: (state, action) => ({
+    ...state,
+    isLoading: true
+  }),
+  [USER_LOGOUT_SUCCESS]: (state, action) => ({
+    ...state,
+    isLoading: false,
+    user: null,
+    isAuthenticated: false
+  })
 };
 
 export default (state = {}, action) => {
