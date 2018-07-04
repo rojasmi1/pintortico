@@ -3,11 +3,12 @@ import { actions } from '../../store/homeReducer';
 import Home from '../../layout/home';
 
 const mapStateToProps = state => ({
-  ...state.home, ...state.global
+  ...state.home,
+  ...state.global
 });
 
 const mapDispatchToProps = dispatch => ({
-  asyncAction: () => dispatch(actions.asyncAction())
+  loadContent: locale => dispatch(actions.loadContent('homepage', locale))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

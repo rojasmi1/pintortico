@@ -38,7 +38,11 @@ class Login extends Component {
         ) : (
           <section>
             <h1>{navigationSettings.logout}</h1>
-            <Logout logout={this.logout} />
+            <Logout
+              logout={this.logout}
+              user={this.props.user}
+              labels={labels}
+            />
           </section>
         )}
         {this.props.isLoading ? (

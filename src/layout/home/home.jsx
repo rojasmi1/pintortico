@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import './home.css';
 import Spinner from 'react-spinkit';
-import DataResults from '../../components/dataResults';
+import Banner from '../../components/banner';
 
 class Home extends Component {
-  asyncAction = event => {
-    this.props.asyncAction();
+  loadContent = event => {
+    this.props.loadContent(this.props.currentLocale);
   };
+
+  componentDidMount() {
+    this.loadContent();
+  }
 
   render() {
     let resultData;
+    const banner = this.props.content ? this.props.content.banner : {};
+    const meta = this.props.content
+      ? this.props.content.meta
+      : { title: '', description: '', tags: '' };
 
     if (this.props.isLoading) {
       resultData = (
@@ -18,18 +26,11 @@ class Home extends Component {
         </div>
       );
     } else {
-      resultData = <DataResults html={this.props.resultData} />;
+      resultData = <Banner {...banner} />;
     }
     return (
       <section className="home">
-        <h1>Welcome to Hills Vet Demo!</h1>
-        <p>
-          This is a Demo App to showcase some functionalities to the customer
-          using ReactJS.
-        </p>
-        <button onClick={this.asyncAction}>Redux async action</button>
-        <br />
-        <br />
+        <h1>{meta.title}</h1>
         {resultData}
       </section>
     );

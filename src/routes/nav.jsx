@@ -3,13 +3,14 @@ import DefaultLayout from '../layout/defaultLayout';
 import HomeContainer from '../containers/homeContainer';
 import LoginContainer from '../containers/loginContainer';
 import ProfessionalContainer from '../containers/professionalContainer';
+import { Switch } from 'react-router-dom';
 import { hasRouteAccess } from '../constants';
 
 const Nav = ({ store }) => {
   const { global } = store.getState();
 
   return (
-    <div>
+    <Switch>
       <DefaultLayout
         exact
         path="/"
@@ -27,7 +28,7 @@ const Nav = ({ store }) => {
         component={LoginContainer}
         isPrivate={false}
       />
-    </div>
+    </Switch>
   );
 };
 

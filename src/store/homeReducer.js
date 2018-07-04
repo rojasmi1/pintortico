@@ -1,3 +1,5 @@
+import { API_CONFIG } from '../constants';
+
 // ------------------------------------
 // Constants
 // ------------------------------------
@@ -20,33 +22,37 @@ function fetchDone(payload) {
   };
 }
 
-function asyncAction() {
-  return dispatch => {
+function loadContent(page, locale) {
+  return async dispatch => {
     dispatch(fetchingData());
-    setTimeout(() => {
-      dispatch(fetchDone('<p style="color:black;">Done loading data!</p>'));
-    }, 5000);
+    const response = await fetch(
+      `${API_CONFIG.BASE_URL}/content/page/${page}?locale=${locale}`
+    );
+    const body = await response.json();
+    if (response.ok) {
+      dispatch(fetchDone(body));
+    }
   };
 }
 
 export const actions = {
-  asyncAction
-}
+  loadContent
+};
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [FETCHING_DATA]    : (state, action) => ({
+  [FETCHING_DATA]: (state, action) => ({
     ...state,
     isLoading: true
   }),
-  [FETCH_DONE] : (state, action) => ({
+  [FETCH_DONE]: (state, action) => ({
     ...state,
     isLoading: false,
-    resultData: action.payload
+    content: action.payload
   })
-}
+};
 
 export default (state = {}, action) => {
   const handler = ACTION_HANDLERS[action.type];

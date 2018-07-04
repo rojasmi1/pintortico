@@ -24,7 +24,6 @@ const Header = props => {
 
   return (
     <header className="header">
-      {props.isAuthenticated ? <span>User: {props.user.firstname}</span> : null}
       <select
         name="locales"
         onChange={event => {

@@ -1,4 +1,5 @@
 import { API_CONFIG } from '../constants';
+import { push } from 'connected-react-router';
 
 // ------------------------------------
 // Constants
@@ -59,6 +60,7 @@ function login(email, password, locale) {
     const body = await response.json();
     if (response.ok) {
       dispatch(userAuthenticationSuccess(body));
+      dispatch(push('/'));
     } else {
       dispatch(userAuthenticationFail(body));
     }
@@ -158,7 +160,9 @@ const ACTION_HANDLERS = {
   [CHANGE_LOCALE]: (state, action) => {
     return {
       ...state,
-      currentLocale: action.payload
+      currentLocale: action.payload,
+      hasErrors: false,
+      errorMessage: null
     };
   }
 };
