@@ -1,0 +1,6 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  max-width: 15vw;
+  align-content: space-between;
+}

@@ -5,8 +5,10 @@ import { API_CONFIG } from '../constants';
 // ------------------------------------
 const USER_AUTHENTICATION = 'USER_AUTHENTICATION';
 const USER_AUTHENTICATION_SUCCESS = 'USER_AUTHENTICATION_SUCCESS';
+const USER_AUTHENTICATION_FAIL = 'USER_AUTHENTICATION_FAIL';
 const USER_LOGOUT = 'USER_LOGOUT';
 const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
+const LOAD_SETTINGS = 'LOAD_SETTINGS';
 
 // ------------------------------------
 // Actions
@@ -17,10 +19,17 @@ function userAuthentication() {
   };
 }
 
-function userAuthenticationSuccess(user) {
+function userAuthenticationSuccess(body) {
   return {
     type: USER_AUTHENTICATION_SUCCESS,
-    payload: user
+    payload: body
+  };
+}
+
+function userAuthenticationFail(body) {
+  return {
+    type: USER_AUTHENTICATION_FAIL,
+    payload: body
   };
 }
 
@@ -46,24 +55,39 @@ function login(email, password) {
         method: 'POST'
       }
     );
-    const user = await response.json();
-    dispatch(userAuthenticationSuccess(user));
+    const body = await response.json();
+    if (response.ok) {
+      dispatch(userAuthenticationSuccess(body));
+    } else {
+      dispatch(userAuthenticationFail(body));
+    }
   };
 }
 
 function logout() {
   return async dispatch => {
     dispatch(userLogout());
-    const response = await fetch(
-      `${API_CONFIG.BASE_URL}/auth/logout?locale=en_US`
-    );
+    await fetch(`${API_CONFIG.BASE_URL}/auth/logout?locale=en_US`);
     dispatch(userLogoutSuccess());
+  };
+}
+
+function loadSettings(locale) {
+  return async dispatch => {
+    const settings = await (await fetch(
+      `${API_CONFIG.BASE_URL}/content/settings?locale=${locale}`
+    )).json();
+    dispatch({
+      type: LOAD_SETTINGS,
+      payload: settings
+    });
   };
 }
 
 export const actions = {
   login,
-  logout
+  logout,
+  loadSettings
 };
 
 // ------------------------------------
@@ -77,12 +101,21 @@ const ACTION_HANDLERS = {
   [USER_AUTHENTICATION_SUCCESS]: (state, action) => {
     const user = action.payload.user;
     user.id = action.payload.id;
-
     return {
       ...state,
       isLoading: false,
       user,
-      isAuthenticated: true
+      isAuthenticated: true,
+      hasErrors: false,
+      errorMessage: null
+    };
+  },
+  [USER_AUTHENTICATION_FAIL]: (state, action) => {
+    return {
+      ...state,
+      isLoading: false,
+      hasErrors: true,
+      errorMessage: action.payload.userMessage
     };
   },
   [USER_LOGOUT]: (state, action) => ({
@@ -94,7 +127,13 @@ const ACTION_HANDLERS = {
     isLoading: false,
     user: null,
     isAuthenticated: false
-  })
+  }),
+  [LOAD_SETTINGS]: (state, action) => {
+    return {
+      ...state,
+      settings: action.payload
+    };
+  }
 };
 
 export default (state = {}, action) => {

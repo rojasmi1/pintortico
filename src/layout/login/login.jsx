@@ -14,12 +14,21 @@ class Login extends Component {
   };
 
   render() {
+    const labels = this.props.settings ? this.props.settings.loginForm : {};
+
     return (
       <section className="login">
+        {this.props.hasErrors ? (
+          <div>
+            <span style={{ color: 'red', fontSize: '20px' }}>
+              {this.props.errorMessage}
+            </span>
+          </div>
+        ) : null}
         {!this.props.isAuthenticated ? (
           <section>
             <h1>Login!</h1>
-            <LoginForm login={this.login} />
+            <LoginForm login={this.login} labels={labels} />
           </section>
         ) : (
           <section>

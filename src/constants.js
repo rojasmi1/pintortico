@@ -3,12 +3,15 @@ exports.API_CONFIG = {
   KEY: ''
 };
 
-exports.hasRouteAccess = (user = { securityroles: [] }, route) => {
+exports.hasRouteAccess = (user, route) => {
   let hasAccess = false;
-  for (let role of user.securityroles) {
-    if (ROUTES_BY_ROLE[role].indexOf(route) !== -1) {
-      hasAccess = true;
-      break;
+
+  if (user && user.securityroles) {
+    for (let role of user.securityroles) {
+      if (ROUTES_BY_ROLE[role].indexOf(route) !== -1) {
+        hasAccess = true;
+        break;
+      }
     }
   }
 

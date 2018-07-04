@@ -29,31 +29,32 @@ class LoginForm extends React.Component {
   }
 
   render() {
+    const { legend, username, password, loginButton } = this.props.labels;
+
     return (
-      <form>
-        <p>Please enter your credentials to log in!</p>
-        <label>
-          Email:
+      <div>
+        <p>{legend}</p>
+
+        <form className="loginForm">
+          <label>{username}:</label>
           <input
             name="email"
             type="text"
             value={this.state.email}
             onChange={this.handleInputChange}
           />
-        </label>
-        <br />
-        <label>
-          Password:
+          <br />
+          <label>{password}:</label>
           <input
             name="password"
             type="password"
             value={this.state.password}
             onChange={this.handleInputChange}
           />
-        </label>
-        <br />
-        <button onClick={this.login}>Log in</button>
-      </form>
+          <br />
+          <button onClick={this.login}>{loginButton}</button>
+        </form>
+      </div>
     );
   }
 }
