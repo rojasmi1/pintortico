@@ -9,6 +9,7 @@ const USER_AUTHENTICATION_FAIL = 'USER_AUTHENTICATION_FAIL';
 const USER_LOGOUT = 'USER_LOGOUT';
 const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
 const LOAD_SETTINGS = 'LOAD_SETTINGS';
+const CHANGE_LOCALE = 'CHANGE_LOCALE';
 
 // ------------------------------------
 // Actions
@@ -45,11 +46,11 @@ function userLogoutSuccess(user) {
   };
 }
 
-function login(email, password) {
+function login(email, password, locale) {
   return async dispatch => {
     dispatch(userAuthentication());
     const response = await fetch(
-      `${API_CONFIG.BASE_URL}/auth/login?locale=en_US`,
+      `${API_CONFIG.BASE_URL}/auth/login?locale=${locale}`,
       {
         body: JSON.stringify({ email, password }),
         method: 'POST'
@@ -64,10 +65,10 @@ function login(email, password) {
   };
 }
 
-function logout() {
+function logout(locale) {
   return async dispatch => {
     dispatch(userLogout());
-    await fetch(`${API_CONFIG.BASE_URL}/auth/logout?locale=en_US`);
+    await fetch(`${API_CONFIG.BASE_URL}/auth/logout?locale=${locale}`);
     dispatch(userLogoutSuccess());
   };
 }
@@ -84,10 +85,30 @@ function loadSettings(locale) {
   };
 }
 
+function changeLocale(locale) {
+  return async dispatch => {
+    // Change current language in the state
+    dispatch({
+      type: CHANGE_LOCALE,
+      payload: locale
+    });
+
+    // Reload settings data with the new language
+    const settings = await (await fetch(
+      `${API_CONFIG.BASE_URL}/content/settings?locale=${locale}`
+    )).json();
+    dispatch({
+      type: LOAD_SETTINGS,
+      payload: settings
+    });
+  };
+}
+
 export const actions = {
   login,
   logout,
-  loadSettings
+  loadSettings,
+  changeLocale
 };
 
 // ------------------------------------
@@ -132,6 +153,12 @@ const ACTION_HANDLERS = {
     return {
       ...state,
       settings: action.payload
+    };
+  },
+  [CHANGE_LOCALE]: (state, action) => {
+    return {
+      ...state,
+      currentLocale: action.payload
     };
   }
 };

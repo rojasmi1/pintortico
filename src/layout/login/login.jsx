@@ -6,15 +6,20 @@ import Logout from '../../components/logout';
 
 class Login extends Component {
   login = (email, password) => {
-    this.props.login(email, password);
+    const currentLocale = this.props.currentLocale;
+    this.props.login(email, password, currentLocale);
   };
 
   logout = () => {
-    this.props.logout();
+    const currentLocale = this.props.currentLocale;
+    this.props.logout(currentLocale);
   };
 
   render() {
     const labels = this.props.settings ? this.props.settings.loginForm : {};
+    const navigationSettings = this.props.settings
+      ? this.props.settings.navigation
+      : {};
 
     return (
       <section className="login">
@@ -27,12 +32,12 @@ class Login extends Component {
         ) : null}
         {!this.props.isAuthenticated ? (
           <section>
-            <h1>Login!</h1>
+            <h1>{navigationSettings.login}</h1>
             <LoginForm login={this.login} labels={labels} />
           </section>
         ) : (
           <section>
-            <h1>Logout!</h1>
+            <h1>{navigationSettings.logout}</h1>
             <Logout logout={this.logout} />
           </section>
         )}

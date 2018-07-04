@@ -16,7 +16,10 @@ const initialstate = {
   professional: {},
   global: {
     currentLocale: 'es_US',
-    locales: ['en_US', 'es_US'],
+    locales: [
+      { id: 'en_US', displayName: 'English US' },
+      { id: 'es_ES', displayName: 'Spanish US' }
+    ],
     isAuthenticated: false,
     hasErrors: false,
     errorMessage: null

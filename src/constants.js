@@ -3,6 +3,8 @@ exports.API_CONFIG = {
   KEY: ''
 };
 
+exports.SERVER_HOST = 'http://localhost:3000';
+
 exports.hasRouteAccess = (user, route) => {
   let hasAccess = false;
 

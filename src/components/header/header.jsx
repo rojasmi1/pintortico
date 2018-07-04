@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../logo.svg';
+import { SERVER_HOST } from '../../constants';
 import './header.css';
 
 const Header = props => {
   let navigationLabels = {};
+  let logo = '';
 
-  // Navigation labels should be load from the Back End
   if (props.settings) {
+    // Navigation labels should be load from the Back End
     const { login, logout } = props.settings.navigation;
     navigationLabels = props.settings.navigation.pages.reduce(
       (acc, page) => {
@@ -16,11 +17,26 @@ const Header = props => {
       },
       { login, logout }
     );
+
+    // Load logo image from server settings
+    logo = `${SERVER_HOST}${props.settings.logo}`;
   }
 
   return (
     <header className="header">
       {props.isAuthenticated ? <span>User: {props.user.firstname}</span> : null}
+      <select
+        name="locales"
+        onChange={event => {
+          props.changeLocale(event.target.value);
+        }}
+      >
+        {props.locales.map(locale => (
+          <option key={locale.id} value={locale.id}>
+            {locale.displayName}
+          </option>
+        ))}
+      </select>
       <ul className="header__navbar">
         <li>
           <Link className="header__link" to="/">
