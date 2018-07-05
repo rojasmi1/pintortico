@@ -9,15 +9,25 @@ const flexLayout = {
 };
 
 class Professional extends Component {
+  loadContent = () => {
+    this.props.loadContent(this.props.currentLocale);
+  };
+
+  componentDidMount() {
+    this.loadContent();
+  }
+
   render() {
+    const gallery = this.props.content ? this.props.content.gallery : {};
+
     return (
-      <section className='home'>
+      <section className="home">
         <h1>Professional Page!</h1>
         <p>
           This content is only shown to authenticated users with the role
           'PROFESSIONAL'.
         </p>
-        <div style={flexLayout}></div>
+        <div style={flexLayout} />
       </section>
     );
   }

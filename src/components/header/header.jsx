@@ -27,7 +27,7 @@ const Header = props => {
       <select
         name="locales"
         onChange={event => {
-          props.changeLocale(event.target.value);
+          props.changeLocale(event.target.value, props.pathname);
         }}
       >
         {props.locales.map(locale => (

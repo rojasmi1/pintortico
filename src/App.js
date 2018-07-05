@@ -15,10 +15,10 @@ const initialstate = {
   },
   professional: {},
   global: {
-    currentLocale: 'es_US',
+    currentLocale: 'en_US',
     locales: [
       { id: 'en_US', displayName: 'English US' },
-      { id: 'es_ES', displayName: 'Spanish US' }
+      { id: 'es_ES', displayName: 'Spanish ES' }
     ],
     isAuthenticated: false,
     hasErrors: false,

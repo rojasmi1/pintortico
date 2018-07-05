@@ -46,7 +46,7 @@ class Login extends Component {
           </section>
         )}
         {this.props.isLoading ? (
-          <Spinner name="chasing-dots" color="steelblue" />
+          <Spinner name="chasing-dots" color="steelblue" className="spinner" />
         ) : null}
       </section>
     );

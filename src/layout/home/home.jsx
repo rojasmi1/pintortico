@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import './home.css';
 import Spinner from 'react-spinkit';
 import Banner from '../../components/banner';
+import Tiles from '../../components/tiles';
 
 class Home extends Component {
-  loadContent = event => {
+  loadContent = () => {
     this.props.loadContent(this.props.currentLocale);
   };
 
@@ -15,6 +16,7 @@ class Home extends Component {
   render() {
     let resultData;
     const banner = this.props.content ? this.props.content.banner : {};
+    const tiles = this.props.content ? this.props.content.tiles : {};
     const meta = this.props.content
       ? this.props.content.meta
       : { title: '', description: '', tags: '' };
@@ -26,11 +28,16 @@ class Home extends Component {
         </div>
       );
     } else {
-      resultData = <Banner {...banner} />;
+      resultData = (
+        <div>
+          <Banner {...banner} />
+          <Tiles {...tiles} />
+        </div>
+      );
     }
     return (
       <section className="home">
-        <h1>{meta.title}</h1>
+        {/* <h1>{meta.title}</h1> */}
         {resultData}
       </section>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import HeaderContainer from '../containers/headerContainer';
-import Footer from '../components/footer';
+import FooterContainer from '../containers/footerContainer';
 import '../styles/main.css';
 
 const DefaultLayout = ({
@@ -31,7 +31,7 @@ const DefaultLayout = ({
               <Redirect to="/login" />
             )}
           </div>
-          <Footer />
+          <FooterContainer />
         </div>
       )}
     />

@@ -11,6 +11,8 @@ const USER_LOGOUT = 'USER_LOGOUT';
 const USER_LOGOUT_SUCCESS = 'USER_LOGOUT_SUCCESS';
 const LOAD_SETTINGS = 'LOAD_SETTINGS';
 const CHANGE_LOCALE = 'CHANGE_LOCALE';
+const FETCHING_DATA = 'FETCHING_DATA';
+const FETCH_DONE = 'FETCH_DONE';
 
 // ------------------------------------
 // Actions
@@ -87,7 +89,7 @@ function loadSettings(locale) {
   };
 }
 
-function changeLocale(locale) {
+function changeLocale(locale, page) {
   return async dispatch => {
     // Change current language in the state
     dispatch({
@@ -103,14 +105,54 @@ function changeLocale(locale) {
       type: LOAD_SETTINGS,
       payload: settings
     });
+
+    if (page) {
+      dispatch(fetchingData());
+      const data = await loadPageData(page, locale);
+      if (data.response && data.response.ok) {
+        dispatch(fetchDone(data.body));
+      }
+    }
   };
+}
+
+function fetchingData() {
+  return {
+    type: FETCHING_DATA
+  };
+}
+
+function fetchDone(payload) {
+  return {
+    type: FETCH_DONE,
+    payload
+  };
+}
+
+function loadContent(page, locale) {
+  return async dispatch => {
+    dispatch(fetchingData());
+    const data = await loadPageData(page, locale);
+    if (data.response && data.response.ok) {
+      dispatch(fetchDone(data.body));
+    }
+  };
+}
+
+async function loadPageData(page, locale) {
+  const response = await fetch(
+    `${API_CONFIG.BASE_URL}/content/page/${page}?locale=${locale}`
+  );
+  const body = await response.json();
+  return { body, response };
 }
 
 export const actions = {
   login,
   logout,
   loadSettings,
-  changeLocale
+  changeLocale,
+  loadContent
 };
 
 // ------------------------------------
@@ -164,7 +206,16 @@ const ACTION_HANDLERS = {
       hasErrors: false,
       errorMessage: null
     };
-  }
+  },
+  [FETCHING_DATA]: (state, action) => ({
+    ...state,
+    isLoading: true
+  }),
+  [FETCH_DONE]: (state, action) => ({
+    ...state,
+    isLoading: false,
+    content: action.payload
+  })
 };
 
 export default (state = {}, action) => {

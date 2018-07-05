@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { actions } from '../../store/homeReducer';
+import { actions } from '../../store/globalReducer';
 import Home from '../../layout/home';
 
 const mapStateToProps = state => ({

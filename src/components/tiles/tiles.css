@@ -1,7 +1,7 @@
-.banner {
-  justify-content: center;
+.tiles {
+  display: flex;
+  justify-content: space-around;
   padding: 20px;
-  border-radius: 5px;
   text-align: center;
   max-width: 968px;
   margin: 0 auto;

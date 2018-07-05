@@ -6,6 +6,7 @@ const Banner = props => {
     return (
       <div className="banner">
         <img src={props.img.src} alt={props.img.alt} />
+        <p>{props.description}</p>
       </div>
     );
   } else {
