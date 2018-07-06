@@ -49,7 +49,7 @@ function userLogoutSuccess(user) {
   };
 }
 
-function login(email, password, locale) {
+function login(email, password, locale, redirectFrom) {
   return async dispatch => {
     dispatch(userAuthentication());
     const response = await fetch(
@@ -62,7 +62,7 @@ function login(email, password, locale) {
     const body = await response.json();
     if (response.ok) {
       dispatch(userAuthenticationSuccess(body));
-      dispatch(push('/'));
+      dispatch(push(redirectFrom));
     } else {
       dispatch(userAuthenticationFail(body));
     }

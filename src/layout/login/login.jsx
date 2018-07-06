@@ -7,7 +7,10 @@ import Logout from '../../components/logout';
 class Login extends Component {
   login = (email, password) => {
     const currentLocale = this.props.currentLocale;
-    this.props.login(email, password, currentLocale);
+    const previousPage = this.props.location.state
+      ? this.props.location.state.from
+      : '/';
+    this.props.login(email, password, currentLocale, previousPage);
   };
 
   logout = () => {

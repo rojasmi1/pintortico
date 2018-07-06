@@ -3,15 +3,12 @@ import thunk from 'redux-thunk';
 import rootReducer from './rootReducer';
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 
-export default function configureStore(history, initialState={}) {
- return createStore(
-   connectRouter(history)(rootReducer),
-   initialState,
-   compose(
-    applyMiddleware(
-     routerMiddleware(history),
-     thunk
-    )
-  )
- );
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+export default function configureStore(history, initialState = {}) {
+  return createStore(
+    connectRouter(history)(rootReducer),
+    initialState,
+    composeEnhancers(applyMiddleware(routerMiddleware(history), thunk))
+  );
 }

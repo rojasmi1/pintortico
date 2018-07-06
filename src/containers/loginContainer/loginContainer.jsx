@@ -7,8 +7,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: (email, password, locale) =>
-    dispatch(actions.login(email, password, locale)),
+  login: (email, password, locale, previousPage) =>
+    dispatch(actions.login(email, password, locale, previousPage)),
   logout: locale => dispatch(actions.logout(locale))
 });
 

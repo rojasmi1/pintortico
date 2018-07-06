@@ -38,19 +38,26 @@ const Header = props => {
       </select>
       <ul className="header__navbar">
         <li>
-          <Link className="header__link" to="/">
+          <Link
+            className="header__link"
+            to={{ pathname: '/', state: { from: props.pathname } }}
+          >
             {navigationLabels['homepage']}
           </Link>
         </li>
-        {props.isAuthenticated ? (
-          <li>
-            <Link className="header__link" to="/professional">
-              {navigationLabels['professional']}
-            </Link>
-          </li>
-        ) : null}
         <li>
-          <Link className="header__link" to="/login">
+          <Link
+            className="header__link"
+            to={{ pathname: '/professional', state: { from: props.pathname } }}
+          >
+            {navigationLabels['professional']}
+          </Link>
+        </li>
+        <li>
+          <Link
+            className="header__link"
+            to={{ pathname: '/login', state: { from: props.pathname } }}
+          >
             {props.isAuthenticated
               ? navigationLabels['logout']
               : navigationLabels['login']}

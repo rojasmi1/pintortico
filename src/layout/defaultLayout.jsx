@@ -28,7 +28,9 @@ const DefaultLayout = ({
             {isRouteAvailable ? (
               <Component {...matchProps} />
             ) : (
-              <Redirect to="/login" />
+              <Redirect
+                to={{ pathname: '/login', state: { from: rest.path } }}
+              />
             )}
           </div>
           <FooterContainer />
