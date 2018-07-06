@@ -56,7 +56,8 @@ function login(email, password, locale, redirectFrom) {
       `${API_CONFIG.BASE_URL}/auth/login?locale=${locale}`,
       {
         body: JSON.stringify({ email, password }),
-        method: 'POST'
+        method: 'POST',
+        credentials: 'include'
       }
     );
     const body = await response.json();
@@ -72,7 +73,9 @@ function login(email, password, locale, redirectFrom) {
 function logout(locale) {
   return async dispatch => {
     dispatch(userLogout());
-    await fetch(`${API_CONFIG.BASE_URL}/auth/logout?locale=${locale}`);
+    await fetch(`${API_CONFIG.BASE_URL}/auth/logout?locale=${locale}`, {
+      credentials: 'include'
+    });
     dispatch(userLogoutSuccess());
   };
 }
@@ -80,7 +83,8 @@ function logout(locale) {
 function loadSettings(locale) {
   return async dispatch => {
     const settings = await (await fetch(
-      `${API_CONFIG.BASE_URL}/content/settings?locale=${locale}`
+      `${API_CONFIG.BASE_URL}/content/settings?locale=${locale}`,
+      { credentials: 'include' }
     )).json();
     dispatch({
       type: LOAD_SETTINGS,
@@ -99,7 +103,8 @@ function changeLocale(locale, page) {
 
     // Reload settings data with the new language
     const settings = await (await fetch(
-      `${API_CONFIG.BASE_URL}/content/settings?locale=${locale}`
+      `${API_CONFIG.BASE_URL}/content/settings?locale=${locale}`,
+      { credentials: 'include' }
     )).json();
     dispatch({
       type: LOAD_SETTINGS,
@@ -141,7 +146,8 @@ function loadContent(page, locale) {
 
 async function loadPageData(page, locale) {
   const response = await fetch(
-    `${API_CONFIG.BASE_URL}/content/page/${page}?locale=${locale}`
+    `${API_CONFIG.BASE_URL}/content/page/${page}?locale=${locale}`,
+    { credentials: 'include' }
   );
   const body = await response.json();
   return { body, response };
