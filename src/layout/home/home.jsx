@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
-import './home.css';
 import Spinner from 'react-spinkit';
-import Banner from '../../components/banner';
-import Tiles from '../../components/tiles';
 
 class Home extends Component {
-  loadContent = () => {
-    this.props.loadContent(this.props.currentLocale);
-  };
-
-  componentDidMount() {
-    this.loadContent();
-  }
-
   render() {
     let resultData;
-    const banner = this.props.content ? this.props.content.banner : {};
-    const tiles = this.props.content ? this.props.content.tiles : {};
-    const meta = this.props.content
-      ? this.props.content.meta
-      : { title: '', description: '', tags: '' };
+    let bioImage = this.props.baseImages
+      ? this.props.baseImages.bio_image
+      : null;
 
     if (this.props.isLoading) {
       resultData = (
@@ -30,14 +17,13 @@ class Home extends Component {
     } else {
       resultData = (
         <div>
-          <Banner {...banner} />
-          <Tiles {...tiles} />
+          {bioImage ? <img src={bioImage.src} alt={bioImage.meta.alt} /> : null}
         </div>
       );
     }
     return (
       <section className="home">
-        {/* <h1>{meta.title}</h1> */}
+        {<h1>Home Page</h1>}
         {resultData}
       </section>
     );

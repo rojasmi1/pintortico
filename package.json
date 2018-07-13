@@ -1,10 +1,12 @@
 {
-  "name": "hills-vet-demo",
+  "name": "pintortico",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "http://localhost:9000/api",
   "dependencies": {
     "axios": "^0.18.0",
+    "base-64": "^0.1.0",
+    "cloudinary-react": "^1.0.6",
     "connected-react-router": "^4.3.0",
     "flow-bin": "^0.72.0",
     "husky": "^0.14.3",
@@ -19,7 +21,7 @@
     "react-scripts": "1.1.4",
     "react-spinkit": "^3.0.0",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-saga": "^0.16.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -29,7 +31,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "start": "PORT=5000 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

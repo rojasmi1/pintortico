@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { actions } from '../../store/globalReducer';
 import Home from '../../layout/home';
 
 const mapStateToProps = state => ({
@@ -7,8 +6,6 @@ const mapStateToProps = state => ({
   ...state.global
 });
 
-const mapDispatchToProps = dispatch => ({
-  loadContent: locale => dispatch(actions.loadContent('homepage', locale))
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

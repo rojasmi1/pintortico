@@ -4,5 +4,5 @@ const app = new Koa();
 
 app.use(serveStatic(`${__dirname}/build`));
 
-app.listen(5000);
+app.listen(3000);
 console.log(`Serving ${__dirname}/build on port 3000`);

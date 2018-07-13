@@ -1,27 +1,4 @@
-exports.API_CONFIG = {
-  BASE_URL: '',
-  KEY: ''
-};
-
-exports.SERVER_HOST = 'http://localhost:3000';
-
-exports.hasRouteAccess = (user, route) => {
-  let hasAccess = false;
-
-  if (user && user.securityroles) {
-    for (let role of user.securityroles) {
-      if (ROUTES_BY_ROLE[role].indexOf(route) !== -1) {
-        hasAccess = true;
-        break;
-      }
-    }
-  }
-
-  return hasAccess;
-};
-
-const ROUTES_BY_ROLE = {
-  ROLE_USER: ['home', 'login'],
-  ROLE_PROFESSIONAL: ['home', 'login', 'professional'],
-  ROLE_VET: ['home', 'login']
+exports.CLOUDINARY_CONFIG = {
+  CLOUD_NAME: 'ddi2el7ue',
+  BASE_URL: 'https://api.cloudinary.com/v1_1/ddi2el7ue'
 };

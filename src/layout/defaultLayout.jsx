@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import HeaderContainer from '../containers/headerContainer';
 import FooterContainer from '../containers/footerContainer';
-import '../styles/main.css';
 
 const DefaultLayout = ({
   component: Component,

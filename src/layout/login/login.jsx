@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './login.css';
 import Spinner from 'react-spinkit';
 import LoginForm from '../../components/loginForm';
 import Logout from '../../components/logout';
@@ -26,16 +25,16 @@ class Login extends Component {
 
     return (
       <section className="login">
-        {this.props.hasErrors ? (
-          <div>
-            <span style={{ color: 'red', fontSize: '20px' }}>
-              {this.props.errorMessage}
-            </span>
-          </div>
-        ) : null}
         {!this.props.isAuthenticated ? (
           <section>
             <h1>{navigationSettings.login}</h1>
+            {this.props.hasErrors ? (
+              <div>
+                <span style={{ color: 'red', fontSize: '20px' }}>
+                  {this.props.errorMessage}
+                </span>
+              </div>
+            ) : null}
             <LoginForm login={this.login} labels={labels} />
           </section>
         ) : (

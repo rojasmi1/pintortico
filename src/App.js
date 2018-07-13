@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import configureStore from './store/createStore';
 import Nav from './routes/nav';
@@ -10,19 +9,12 @@ import { actions } from './store/globalReducer';
 const history = createBrowserHistory();
 const initialstate = {
   home: {
-    isLoading: false,
-    resultData: null
+    isLoading: false
   },
-  professional: {},
   global: {
-    currentLocale: 'en_US',
-    locales: [
-      { id: 'en_US', displayName: 'English US' },
-      { id: 'es_ES', displayName: 'Spanish ES' }
-    ],
-    isAuthenticated: false,
     hasErrors: false,
-    errorMessage: null
+    errorMessage: null,
+    baseImages: null
   }
 };
 
@@ -30,7 +22,7 @@ const store = configureStore(history, initialstate);
 
 class App extends React.Component {
   componentDidMount() {
-    store.dispatch(actions.loadSettings('en_US'));
+    store.dispatch(actions.getBaseImages());
   }
 
   render() {

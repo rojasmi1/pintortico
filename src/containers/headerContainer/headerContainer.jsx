@@ -8,16 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeLocale: (locale, pathname) => {
-    pathname = pathname.substring(1);
-    if (pathname === '') {
-      pathname = 'homepage';
-    } else if (pathname === 'login') {
-      pathname = '';
-    }
-
-    return dispatch(actions.changeLocale(locale, pathname));
-  }
+  changeLocale: locale => dispatch(actions.changeLocale(locale))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
