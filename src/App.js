@@ -5,13 +5,13 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import { actions } from './store/globalReducer';
+import withRoot from './withRoot';
 
 const history = createBrowserHistory();
 const initialstate = {
-  home: {
-    isLoading: false
-  },
+  home: {},
   global: {
+    isLoading: false,
     hasErrors: false,
     errorMessage: null,
     baseImages: null
@@ -36,4 +36,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRoot(App);
