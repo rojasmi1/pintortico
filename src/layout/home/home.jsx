@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withStyles, Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+import MediaCard from '../../components/mediaCard';
 
 const styles = theme => ({
   root: {
@@ -29,8 +31,10 @@ class Home extends Component {
     if (!this.props.isLoading) {
       resultData = (
         <Grid container spacing={40}>
-          <Grid item xs={12} sm={1} />
-          <Grid item xs={12} sm={5}>
+          <Hidden smDown implementation="js">
+            <Grid item xs={12} sm={1} />
+          </Hidden>
+          <Grid item xs={12} md={5} sm={5}>
             {bioImage ? (
               <img
                 className={classes.bioImage}
@@ -39,7 +43,7 @@ class Home extends Component {
               />
             ) : null}
           </Grid>
-          <Grid item xs={12} sm={5}>
+          <Grid item xs={12} md={5} sm={7}>
             <Paper className={classes.paper}>
               <Typography variant="subheading" component="h3">
                 Bio
@@ -66,6 +70,43 @@ class Home extends Component {
                 it conceptual or physical.
               </Typography>
             </Paper>
+          </Grid>
+          <Hidden smDown implementation="js">
+            <Grid item xs={12} sm={1} />
+          </Hidden>
+
+          <Grid item xs={12} sm={4}>
+            <MediaCard
+              img={{
+                src:
+                  'http://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_345,x_54/v1533012652/Pintortico_General/max_rojas_meet_me.jpg',
+                alt: 'Alt text'
+              }}
+              title="Meet me"
+              content="Max grew up surrounded by nature, nature that is reflected in his work. Apart from being an artist, he has an studio where he helps others become one."
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <MediaCard
+              img={{
+                src:
+                  'http://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_335/v1533012641/Pintortico_General/max_rojas_gallery.jpg',
+                alt: 'Alt text'
+              }}
+              title="Gallery"
+              content="Interested in seeing part of his job? The gallery will walk you through his most popular paintings, as well as some of his scultures and crafted tools."
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <MediaCard
+              img={{
+                src:
+                  'http://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_345/v1533013352/Pintortico_General/max_rojas_events.jpg',
+                alt: 'Alt text'
+              }}
+              title="Events"
+              content="Whant to see Max's expositions? See the upcomming events and don't miss a detail about when and where to assist!"
+            />
           </Grid>
         </Grid>
       );
