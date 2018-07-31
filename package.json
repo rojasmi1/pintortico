@@ -21,9 +21,9 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
+    "lint-staged": "^7.1.0",
     "prettier": "^1.12.1",
-    "lint-staged": "^7.1.0"
-    
+    "source-map-explorer": "^1.5.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -32,6 +32,7 @@
     ]
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/main.*",
     "precommit": "lint-staged",
     "postinstall": "npm run build",
     "start": "node server.js",
