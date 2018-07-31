@@ -79,7 +79,7 @@ class Home extends Component {
             <MediaCard
               img={{
                 src:
-                  'http://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_345,x_54/v1533012652/Pintortico_General/max_rojas_meet_me.jpg',
+                  'https://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_345,x_54/v1533012652/Pintortico_General/max_rojas_meet_me.jpg',
                 alt: 'Alt text'
               }}
               title="Meet me"
@@ -90,7 +90,7 @@ class Home extends Component {
             <MediaCard
               img={{
                 src:
-                  'http://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_335/v1533012641/Pintortico_General/max_rojas_gallery.jpg',
+                  'https://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_335/v1533012641/Pintortico_General/max_rojas_gallery.jpg',
                 alt: 'Alt text'
               }}
               title="Gallery"
@@ -101,7 +101,7 @@ class Home extends Component {
             <MediaCard
               img={{
                 src:
-                  'http://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_345/v1533013352/Pintortico_General/max_rojas_events.jpg',
+                  'https://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_345/v1533013352/Pintortico_General/max_rojas_events.jpg',
                 alt: 'Alt text'
               }}
               title="Events"
