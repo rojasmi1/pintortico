@@ -12,9 +12,7 @@ const drawerWidth = 200;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    maxHeight: 800,
     zIndex: 1,
-    overflow: 'hidden',
     position: 'relative',
     display: 'flex',
     width: '100%'
