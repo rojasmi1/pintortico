@@ -1,7 +1,10 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Drawer, Hidden, Divider, Typography } from '@material-ui/core';
+import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
 import HeaderContainer from '../containers/headerContainer';
 import FooterContainer from '../containers/footerContainer';
 import Menu from '../components/menu';

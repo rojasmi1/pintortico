@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Home from '@material-ui/icons/Home';
 import Info from '@material-ui/icons/Info';
 import Collections from '@material-ui/icons/Collections';
-import { DateRange } from '@material-ui/icons';
+import DateRange from '@material-ui/icons/DateRange';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
