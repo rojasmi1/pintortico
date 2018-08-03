@@ -2,7 +2,7 @@ import React from 'react';
 import configureStore from './store/createStore';
 import Nav from './routes/nav';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
+import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
 import { actions } from './store/globalReducer';
 import withRoot from './withRoot';
@@ -14,11 +14,11 @@ const initialstate = {
     isLoading: false,
     hasErrors: false,
     errorMessage: null,
-    baseImages: null
+    baseImages: {}
   }
 };
 
-const store = configureStore(history, initialstate);
+const store = configureStore(initialstate);
 
 class App extends React.Component {
   componentDidMount() {
@@ -28,9 +28,9 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <ConnectedRouter history={history}>
+        <Router history={history}>
           <Nav store={store} />
-        </ConnectedRouter>
+        </Router>
       </Provider>
     );
   }

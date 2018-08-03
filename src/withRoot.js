@@ -17,7 +17,8 @@ const theme = createMuiTheme({
       light: '#ffff81',
       main: amber[300],
       dark: '#c8a415'
-    }
+    },
+    type: 'light'
   },
   typography: {
     fontFamily: 'Helvetica Neue, sans-serif, Arial, Alex Brush',
@@ -32,6 +33,13 @@ const theme = createMuiTheme({
     },
     body1: {
       color: '#666'
+    }
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: '0'
+      }
     }
   }
 });

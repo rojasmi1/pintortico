@@ -8,7 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const styles = {
+const styles = theme => ({
   card: {
     maxWidth: 345
   },
@@ -18,26 +18,32 @@ const styles = {
   media: {
     height: 0,
     paddingTop: '30%' // 16:9
+  },
+  cardActions: {
+    justifyContent: 'center',
+    paddingBottom: theme.spacing.unit * 3
   }
-};
+});
 
 function MediaCard(props) {
   const { classes } = props;
   return (
     <div>
       <Card className={classes.card}>
-        <CardMedia
-          className={classes.media}
-          image={props.img.src}
-          title={props.img.alt}
-        />
+        {props.img ? (
+          <CardMedia
+            className={classes.media}
+            image={props.img.src}
+            title={props.img.alt}
+          />
+        ) : null}
         <CardContent className={classes.cardContent}>
           <Typography gutterBottom variant="title" component="h2">
             {props.title}
           </Typography>
           <Typography component="p">{props.content}</Typography>
         </CardContent>
-        <CardActions>
+        <CardActions className={classes.cardActions}>
           <Button size="small" variant="contained" color="secondary">
             Read More
           </Button>
@@ -53,4 +59,4 @@ MediaCard.propTypes = {
   content: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(MediaCard);
+export default withStyles(styles, { withTheme: true })(MediaCard);

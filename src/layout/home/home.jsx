@@ -24,23 +24,22 @@ const styles = theme => ({
 class Home extends Component {
   render() {
     const { classes } = this.props;
-    let resultData;
-    const bioImage = this.props.baseImages
-      ? this.props.baseImages.bio_image
-      : null;
+    const {
+      bio_image: bioImage,
+      meet_me: meetMeImage,
+      gallery: galleryImage,
+      events: eventsImage
+    } = this.props.baseImages;
 
-    if (!this.props.isLoading) {
-      resultData = (
-        <Grid container spacing={40}>
-          <Hidden smDown implementation="js">
-            <Grid item xs={12} sm={1} />
-          </Hidden>
+    return (
+      <section>
+        <Grid container spacing={40} justify="center" alignItems="center">
           <Grid item xs={12} md={5} sm={5}>
             {bioImage ? (
               <img
                 className={classes.bioImage}
                 src={bioImage.src}
-                alt={bioImage.meta.alt}
+                alt={bioImage.alt}
               />
             ) : null}
           </Grid>
@@ -72,47 +71,31 @@ class Home extends Component {
               </Typography>
             </Paper>
           </Grid>
-          <Hidden smDown implementation="js">
-            <Grid item xs={12} sm={1} />
-          </Hidden>
 
           <Grid item xs={12} sm={4}>
             <MediaCard
-              img={{
-                src:
-                  'https://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_345,x_54/v1533012652/Pintortico_General/max_rojas_meet_me.jpg',
-                alt: 'Alt text'
-              }}
+              img={meetMeImage}
               title="Meet me"
               content="Max grew up surrounded by nature, nature that is reflected in his work. Apart from being an artist, he has an studio where he helps others become one."
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <MediaCard
-              img={{
-                src:
-                  'https://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_335/v1533012641/Pintortico_General/max_rojas_gallery.jpg',
-                alt: 'Alt text'
-              }}
+              img={galleryImage}
               title="Gallery"
               content="Interested in seeing part of his job? The gallery will walk you through his most popular paintings, as well as some of his scultures and crafted tools."
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <MediaCard
-              img={{
-                src:
-                  'https://res.cloudinary.com/ddi2el7ue/image/upload/c_fill,h_110,w_345/v1533013352/Pintortico_General/max_rojas_events.jpg',
-                alt: 'Alt text'
-              }}
+              img={eventsImage}
               title="Events"
-              content="Whant to see Max's expositions? See the upcomming events and don't miss a detail about when and where to assist!"
+              content="Want to see Max's expositions? Take a look at the upcomming events and don't miss the change to assist!"
             />
           </Grid>
         </Grid>
-      );
-    }
-    return <section>{resultData}</section>;
+      </section>
+    );
   }
 }
 

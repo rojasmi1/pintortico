@@ -3,8 +3,7 @@ import Header from '../../components/header';
 import { actions } from '../../store/globalReducer';
 
 const mapStateToProps = state => ({
-  ...state.global,
-  pathname: state.router.location.pathname
+  ...state.global
 });
 
 const mapDispatchToProps = dispatch => ({
