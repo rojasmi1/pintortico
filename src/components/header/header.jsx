@@ -7,7 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { withStyles } from '@material-ui/core/styles';
 
-const drawerWidth = 200;
+const drawerWidth = '20vw';
 
 const styles = theme => ({
   navIconHide: {
@@ -19,7 +19,7 @@ const styles = theme => ({
     position: 'absolute',
     marginLeft: drawerWidth,
     [theme.breakpoints.up('md')]: {
-      width: `calc(100% - ${drawerWidth}px)`
+      width: '80vw'
     }
   },
   loadingIndicator: {

@@ -6,11 +6,12 @@ import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import HeaderContainer from '../containers/headerContainer';
-import FooterContainer from '../containers/footerContainer';
+import Footer from '../components/footer';
 import Menu from '../components/menu';
 import withRoot from '../withRoot';
 
-const drawerWidth = 200;
+const drawerWidth = '20vw';
+const drawerHeight = '90vh';
 
 const styles = theme => ({
   root: {
@@ -18,19 +19,28 @@ const styles = theme => ({
     zIndex: 1,
     position: 'relative',
     display: 'flex',
-    width: '100%'
+    width: '100%',
+    height: drawerHeight,
+    flexWrap: 'wrap'
   },
   drawerPaper: {
     width: drawerWidth,
+    height: '100%',
     [theme.breakpoints.up('md')]: {
       position: 'relative'
     }
+  },
+  drawerRoot: {
+    height: drawerHeight
   },
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3
+    padding: theme.spacing.unit * 3,
+    overflow: 'scroll',
+    width: '80vw',
+    height: drawerHeight
   },
   title: {
     paddingBottom: theme.spacing.unit * 5
@@ -77,7 +87,8 @@ class DefaultLayout extends React.Component {
                 variant="permanent"
                 open
                 classes={{
-                  paper: classes.drawerPaper
+                  paper: classes.drawerPaper,
+                  docked: classes.drawerRoot
                 }}
               >
                 <Menu />
@@ -91,7 +102,7 @@ class DefaultLayout extends React.Component {
               </div>
               <Component {...matchProps} />
             </div>
-            <FooterContainer />
+            <Footer />
           </div>
         )}
       />
