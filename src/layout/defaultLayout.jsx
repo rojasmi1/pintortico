@@ -24,9 +24,9 @@ const styles = theme => ({
     flexWrap: 'wrap'
   },
   drawerPaper: {
-    width: drawerWidth,
     height: '100%',
     [theme.breakpoints.up('md')]: {
+      width: drawerWidth,
       position: 'relative'
     }
   },
