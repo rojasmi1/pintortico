@@ -11,7 +11,6 @@ import Menu from '../components/menu';
 import withRoot from '../withRoot';
 
 const drawerWidth = '20vw';
-const drawerHeight = '90vh';
 
 const styles = theme => ({
   root: {
@@ -20,8 +19,11 @@ const styles = theme => ({
     position: 'relative',
     display: 'flex',
     width: '100%',
-    height: drawerHeight,
-    flexWrap: 'wrap'
+    height: '80vh',
+    flexWrap: 'wrap',
+    [theme.breakpoints.up('sm')]: {
+      height: '90vh'
+    }
   },
   drawerPaper: {
     height: '100%',
@@ -31,7 +33,10 @@ const styles = theme => ({
     }
   },
   drawerRoot: {
-    height: drawerHeight
+    height: '80vh',
+    [theme.breakpoints.up('sm')]: {
+      height: '90vh'
+    }
   },
   toolbar: theme.mixins.toolbar,
   content: {
@@ -40,7 +45,10 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
     overflow: 'scroll',
     width: '80vw',
-    height: drawerHeight
+    height: '80vh',
+    [theme.breakpoints.up('sm')]: {
+      height: '90vh'
+    }
   },
   title: {
     paddingBottom: theme.spacing.unit * 5
