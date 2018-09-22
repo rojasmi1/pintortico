@@ -30,8 +30,8 @@ jobs:
       - run: yarn install
 
       - store_artifacts:
-          path: /build
-          destination: artifact-file
+          path: ~/repo/build
+          destination: prod-dist
 
       - save_cache:
           paths:
