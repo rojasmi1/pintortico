@@ -1,6 +1,6 @@
 import React from 'react';
 import configureStore from './store/createStore';
-import Nav from './routes/nav';
+import Routes from './layout/Routes';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
@@ -29,7 +29,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <Nav store={store} />
+          <Routes store={store} />
         </Router>
       </Provider>
     );

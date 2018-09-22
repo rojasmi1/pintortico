@@ -52,8 +52,6 @@ my-app/
     components/
     containers/
     layout/
-    routes/
-      nav.jsx
     sagas/
     services/
     store/

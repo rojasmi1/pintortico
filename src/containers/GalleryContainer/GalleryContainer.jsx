@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Home from 'layout/Home';
+import Gallery from 'layout/Gallery';
 
 const mapStateToProps = state => ({
   ...state.home,
@@ -8,4 +8,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
