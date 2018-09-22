@@ -5,6 +5,7 @@
 version: 2
 jobs:
   build:
+    parallelism: 2
     docker:
       # specify the version you desire here
       - image: circleci/node:chakracore-8.11-browsers-legacy
@@ -27,6 +28,10 @@ jobs:
           - v1-dependencies-
 
       - run: yarn install
+
+      - store_artifacts:
+        path: /build
+        destination: artifact-file
 
       - save_cache:
           paths:
