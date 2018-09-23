@@ -20,10 +20,14 @@ jobs:
 
       - store_artifacts:
           path: build
-          destination: /tmp/workspace/pintortico-dist
+          destination: /home/circleci/repo/workspace/pintortico-dist
+
+      - run:
+          name: List root
+          command: ls /home/circleci/repo
 
       - persist_to_workspace:
-          root: /tmp/workspace
+          root: /home/circleci/repo/workspace
           paths:
             - pintortico-dist
 
@@ -41,17 +45,19 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
       - run:
           name: List repo
-          command: ls /tmp/workspace
+          command: ls /home/circleci/repo/workspace
+
+      - attach_workspace:
+          at: /home/circleci/repo/workspace
+
       - run:
           name: Install awscli
           command: sudo pip install awscli
       - run:
           name: Deploy to S3
-          command: aws s3 sync /tmp/workspace/pintortico-dist build s3://pintortico --delete
+          command: aws s3 sync /home/circleci/repo/workspace/pintortico-dist build s3://pintortico --delete
 
 workflows:
   version: 2
