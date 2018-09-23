@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/node:chakracore-8.11-browsers-legacy
 
-    working_directory: /tmp
+    working_directory: ~/repo
 
     steps:
       - checkout
@@ -44,6 +44,12 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
 
+      - run:
+          name: List temp
+          command: ls /tmp
+      - run:
+          name: List repo
+          command: ls ~/repo
       - run:
           name: Install awscli
           command: sudo pip install awscli
