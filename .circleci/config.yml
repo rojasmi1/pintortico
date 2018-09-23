@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: circleci/node:chakracore-8.11-browsers-legacy
 
-    working_directory: ~/repo
+    working_directory: /tmp
 
     steps:
       - checkout
@@ -19,13 +19,17 @@ jobs:
       - run: yarn install
 
       - store_artifacts:
-          path: ~/repo/build
+          path: build
           destination: pintortico-dist
 
+      # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job. 
       - persist_to_workspace:
-      root: ~/repo
-      paths: 
-        - build
+      # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is 
+	    # taken to be the root directory of the workspace.
+          root: workspace
+          # Must be relative path from root
+          paths:
+            - build
 
       - save_cache:
           paths:
@@ -39,15 +43,19 @@ jobs:
     docker:
       - image: circleci/python:2.7-jessie
 
-    working_directory: pintortico-dist
+    working_directory: /tmp
 
-    steps:   
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/workspace
+
       - run:
           name: Install awscli
           command: sudo pip install awscli
       - run:
           name: Deploy to S3
-          command: aws s3 sync build s3://pintortico --delete
+          command: aws s3 sync /tmp/workspace/build s3://pintortico --delete
 
 workflows:
   version: 2
