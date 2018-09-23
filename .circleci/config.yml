@@ -45,12 +45,12 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - attach_workspace:
+          at: /home/circleci/repo
+
       - run:
           name: List repo
           command: ls /home/circleci/repo/build
-
-      - attach_workspace:
-          at: /home/circleci/repo
 
       - run:
           name: Install awscli
