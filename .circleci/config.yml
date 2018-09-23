@@ -32,7 +32,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:chakracore-8.11-browsers-legacy
+      - image: circleci/python:2.7-jessie
 
     working_directory: ~/repo
 
