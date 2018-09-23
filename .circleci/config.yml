@@ -20,7 +20,12 @@ jobs:
 
       - store_artifacts:
           path: ~/repo/build
-          destination: prod-dist
+          destination: pintortico-dist
+
+      - persist_to_workspace:
+      root: ~/repo
+      paths: 
+        - build
 
       - save_cache:
           paths:
@@ -34,7 +39,7 @@ jobs:
     docker:
       - image: circleci/python:2.7-jessie
 
-    working_directory: ~/repo
+    working_directory: pintortico-dist
 
     steps:   
       - run:
@@ -42,7 +47,7 @@ jobs:
           command: sudo pip install awscli
       - run:
           name: Deploy to S3
-          command: aws s3 sync ~/repo/build s3://pintortico --delete
+          command: aws s3 sync build s3://pintortico --delete
 
 workflows:
   version: 2
