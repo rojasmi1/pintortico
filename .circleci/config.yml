@@ -20,10 +20,10 @@ jobs:
 
       - store_artifacts:
           path: build
-          destination: workspace/pintortico-dist
+          destination: /tmp/workspace/pintortico-dist
 
       - persist_to_workspace:
-          root: workspace
+          root: /tmp/workspace
           paths:
             - pintortico-dist
 
@@ -42,16 +42,16 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: ~/repo/workspace
+          at: /tmp/workspace
       - run:
           name: List repo
-          command: ls ~/repo/workspace
+          command: ls /tmp/workspace
       - run:
           name: Install awscli
           command: sudo pip install awscli
       - run:
           name: Deploy to S3
-          command: aws s3 sync ~/repo/workspace/pintortico-dist build s3://pintortico --delete
+          command: aws s3 sync /tmp/workspace/pintortico-dist build s3://pintortico --delete
 
 workflows:
   version: 2
