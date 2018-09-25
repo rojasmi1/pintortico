@@ -4,5 +4,5 @@ exports.CLOUDINARY_CONFIG = {
 };
 
 exports.API = {
-  BASE_URL: `${window.location.protocol}//${process.env.REACT_APP_API_HOST}/api`
+  BASE_URL: `${process.env.REACT_APP_API_HOST}/api`
 };
