@@ -9,9 +9,7 @@ const styles = theme => ({
   root: {
     width: '100vw',
     padding: `${theme.spacing.unit * 1}px ${theme.spacing.unit * 3}px`,
-    backgroundColor: theme.palette.common.lightGrey,
-    position: 'sticky',
-    bottom: 0
+    backgroundColor: theme.palette.common.lightGrey
   },
   socialIcons: {
     display: 'flex',
