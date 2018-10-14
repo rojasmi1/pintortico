@@ -13,6 +13,19 @@ class BaseService {
       throw new Error(response.error);
     }
   }
+
+  async postRequest(path, body) {
+    const response = await axios({
+      url: `${API.BASE_URL}${path}`,
+      method: 'POST',
+      data: body
+    });
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error(response.error);
+    }
+  }
 }
 
 export default BaseService;

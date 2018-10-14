@@ -20,7 +20,8 @@ const theme = createMuiTheme({
       dark: '#c8a415'
     },
     common: {
-      lightGrey: grey[300]
+      lightGrey: grey[300],
+      error: '#f44336'
     },
     type: 'light'
   },

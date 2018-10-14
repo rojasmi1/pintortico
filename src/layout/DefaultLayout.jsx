@@ -26,7 +26,8 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 4,
     width: '100%',
-    height: '100%'
+    height: '100%',
+    minHeight: '80vh'
   },
   title: {
     paddingBottom: theme.spacing.unit * 5

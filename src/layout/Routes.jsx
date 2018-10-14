@@ -20,13 +20,13 @@ const Routes = ({ store }) => {
         exact
         component={EventsContainer}
         path="/events"
-        title="Events"
+        title="Events and Presentations"
       />
       <DefaultLayout
         exact
         path="/contact"
         component={ContactContainer}
-        title="Contact"
+        title="Contact Information"
       />
     </Switch>
   );

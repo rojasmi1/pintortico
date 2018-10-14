@@ -8,8 +8,16 @@
 const GET_BASE_IMAGES = 'GET_BASE_IMAGES';
 const GET_BASE_IMAGES_SUCCESS = 'GET_BASE_IMAGES_SUCCESS';
 const GET_BASE_IMAGES_FAIL = 'GET_BASE_IMAGES_FAIL';
+const SHOW_LOADING_INDICATOR = 'SHOW_LOADING_INDICATOR';
+const HIDE_LOADING_INDICATOR = 'HIDE_LOADING_INDICATOR';
 
-export { GET_BASE_IMAGES, GET_BASE_IMAGES_SUCCESS, GET_BASE_IMAGES_FAIL };
+export {
+  GET_BASE_IMAGES,
+  GET_BASE_IMAGES_SUCCESS,
+  GET_BASE_IMAGES_FAIL,
+  SHOW_LOADING_INDICATOR,
+  HIDE_LOADING_INDICATOR
+};
 
 export const actions = {
   getBaseImages
@@ -47,6 +55,16 @@ const ACTION_HANDLERS = {
       isLoading: false,
       hasErrors: true,
       errorMessage: action.payload
+    };
+  },
+  [SHOW_LOADING_INDICATOR]: (state, action) => ({
+    ...state,
+    isLoading: true
+  }),
+  [HIDE_LOADING_INDICATOR]: (state, action) => {
+    return {
+      ...state,
+      isLoading: false
     };
   }
 };
