@@ -133,12 +133,14 @@ class ContactForm extends Component {
               fullWidth
               error={errors.message && touched.message}
               disabled={isSendingMessage}
+              multiline
+              rows={6}
             />
             <FieldError hasErrors={errors.message && touched.message}>
               {errors.message}
             </FieldError>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={6} md={4}>
             <Button
               type="submit"
               variant="contained"
